@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle de fluxo de caixa diário</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Controle de fluxo de caixa diário</h1>
+    <div style="width: min-content;">
+      <form id="lancamento-form">
+        <input type="hidden" id="id" name="id"/>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required />
+
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao" required  />
+
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo" required>
+          <option value="">Selecione</option>
+          <option value="-1">Débito</option>
+          <option value="1">Crédito</option>
+        </select>
+
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor" name="valor" required />
+
+        <button type="submit" id="inserir">Inserir</button>
+        <button type="button" id="limpar">Limpar</button>
+      </form>
+    </div>
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabDiario">Diário</a></li>
+        <li><a href="#tabConsolidado">Consolidado</a></li>
+      </ul>
+      <div id="tabDiario">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 80px;">Ação</th>
+              <th style="width: 150px;">Data</th>
+              <th style="width: 500px;">Descrição</th>
+              <th style="width: 150px;">Tipo</th>
+              <th style="width: 150px;">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="lancamentos-table">
+            <!-- Aqui serão inseridos os lançamentos financeiros dinamicamente -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="saldoText">Saldo consolidado:</td>
+              <td id="saldoTotal" class="alignRight"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div id="tabConsolidado">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 150px;">Data</th>
+              <th style="width: 150px;">Valor</th>
+            </tr>
+          </thead>
+          <tbody id="consolidado-table">
+            <!-- Aqui serão inseridos os lançamentos financeiros dinamicamente -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="saldoText">Saldo:</td>
+              <td id="saldoConsolidado" class="alignRight"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js" integrity="sha512-USPCA7jmJHlCNRSFwUFq3lAm9SaOjwG8TaB8riqx3i/dAJqhaYilVnaf2eVUH5zjq89BU6YguUuAno+jpRvUqA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="lancamentos.js"></script>
+    <script src="consolidado.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
