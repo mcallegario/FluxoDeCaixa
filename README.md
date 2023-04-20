@@ -7,11 +7,25 @@ Um comerciante precisa controlar o seu fluxo de caixa diário com os lançamento
 
 # Desenho da Solução
 <img src="doc/arquitetura.png">
-- Desenho da solução, e explicação não técnica do funcionamento da arquitetura;
-- Readme com instruções de como subir a aplicação local, container e utilização dos serviços;
+
+# Implementação da Solução
+
+Implementei uma solução simples utilizando Node.js com Express e TypeScript para criar uma WebAPI.
+Optei por não utilizar aqui nenhum banco de dados em específico. Estou usando a memória do processo Node.js como armazenamento temporário, focando mais nos aspectos web da API mesmo.
+Além da WebAPI também implementei um exemplo da sua utilização através de uma aplicação frontend em HTML/Javascript.
+
+# Dependências
+- Express: webserver que vamos utilizar para a webapi;
+- CORS: pacote de segurança necessário para permitir comunicação futura com frontend;
+- Helmet: pacote de segurança para dar uma blindada básica na nossa webapi;
+- DotEnv: pacote de configuração para cuidar das variáveis de ambiente;
+- Morgan: pacote para logging de requisições no terminal;
+- Express Async Errors: pacote para conseguir capturar erros assíncronos;
+- Typescript: pacote para suporte à typescript no projeto;
+- TS-Node: pacote para execução de arquivos TS sem precisar de pré-transpilação;
 
 # Serviços implementados
-- O serviço webapi está sendo executado no endereço http://localhost:3000/lancamento/v1/
+- Os serviços da WebAPI está sendo executado no endereço http://localhost:3000/lancamento/v1/
 - Serviços disponíveis:
     - “/all”, recupera todos os lançamentos (*)
     - “/consolidated:”, recupera todos os consolidados diários (*)
@@ -31,6 +45,11 @@ Um comerciante precisa controlar o seu fluxo de caixa diário com os lançamento
         valor: number;
     }
 
+    Consolidado {
+        data: string;
+        valor: number;
+    }
+
 # Começando
 Primeiro, clone o repositório
 
@@ -41,12 +60,12 @@ npm run dev # watch mode
 npm run build # to build the project
 ```
 
-# Desenvolvimento
+# Em Desenvolvimento
 ```bash
 npm run dev # watch mode
 ```
 
-# Produção
+# Em Produção
 ```bash
 npm run compile # to transpile TS to JS
 npm run start # to build the project
