@@ -59,19 +59,19 @@ Primeiro, clone o repositório
 ```bash
 cd FluxoDeCaixa # vá para o diretório raiz do projeto
 npm install # instalar dependências de desenvolvimento
-npm run dev # watch mode
-npm run build # to build the project
+npm run dev # modo de assistir(watch)
+npm run build # para construir(build) o projeto
 ```
 
 # Em Desenvolvimento
 ```bash
-npm run dev # watch mode
+npm run dev # modo de assistir(watch)
 ```
 
 # Em Produção
 ```bash
-npm run compile # to transpile TS to JS
-npm run start # to build the project
+npm run compile # para compilar(transpile) TS para JS
+npm run start # para construir(build) o projeto
 ```
 
 # Exemplo
