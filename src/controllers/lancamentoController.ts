@@ -30,15 +30,23 @@ async function getEntry(req: Request, res: Response) {
     res.json(lancamento);
 }
 
-async function consolidatedDaily(req: Request, res: Response) {
-    const consolidado = await LancamentoService.consolidatedDaily();
+async function getAllConsolidatedDaily(req: Request, res: Response) {
+    const consolidado = await LancamentoService.getAllConsolidatedDaily();
+    res.json(consolidado);
+}
+
+
+async function getConsolidatedDaily(req: Request, res: Response) {
+    const data = req.params.data;
+    const consolidado = await LancamentoService.getConsolidatedDaily(data);
     res.json(consolidado);
 }
 
 export default {
     addUpdateEntry,
     deleteEntry,
-    consolidatedDaily,
+    getAllConsolidatedDaily,
+    getConsolidatedDaily,
     getEntry,
     getAllEntrys
 } 

@@ -77,7 +77,23 @@ async function deleteEntry(id: number): Promise<Lancamento[] | undefined> {
 }
 
 //consulta os lançamentos por data
-async function consolidatedDaily(): Promise<Consolidado[] | undefined> {
+async function getAllConsolidatedDaily(): Promise<Consolidado[] | undefined> {
+    return new Promise( async (resolve, reject) => {
+        const consolidado = await getConsolidated(lancamentos);
+        return resolve(consolidado);
+    })
+}
+
+//consulta os lançamentos por data
+async function getConsolidatedDaily(data:string): Promise<Consolidado[] | undefined> {
+    return new Promise( async (resolve, reject) => {
+        const lancamentosDia = lancamentos.filter(c=>c.data === data);
+        const consolidado = await getConsolidated(lancamentosDia);
+        return resolve(consolidado);
+    })
+}
+
+async function getConsolidated(lancamentos:Lancamento[]): Promise<Consolidado[] | undefined> {
     return new Promise((resolve, reject) => {
         const consolidado:Consolidado[] = [];
         lancamentos.forEach((lancamento)=>{
@@ -93,6 +109,7 @@ async function consolidatedDaily(): Promise<Consolidado[] | undefined> {
         return resolve(consolidado);
     })
 }
+
 
 //ler o lançamento de um id
 async function getEntry(id: number): Promise<Lancamento | undefined> {
@@ -112,7 +129,8 @@ export default {
     addEntry,
     updateEntry,
     deleteEntry,
-    consolidatedDaily,
+    getAllConsolidatedDaily,
+    getConsolidatedDaily,
     getEntry,
     getAllEntrys
 }    
