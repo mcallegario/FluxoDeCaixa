@@ -27,7 +27,7 @@ Para tornar a experiência mais próxima do que se teria com um banco de dados r
 - Typescript: pacote para suporte à typescript no projeto;
 - TS-Node: pacote para execução de arquivos TS sem precisar de pré-transpilação;
 
-# Serviços implementados
+# Serviços Implementados
 - Os serviços da WebAPI está sendo executado no endereço http://localhost:3000/lancamento/v1/
 - Serviços disponíveis:
     - “/all”, verbo HTTP GET, recupera todos os lançamentos no formato JSON. (*)
@@ -39,7 +39,7 @@ Para tornar a experiência mais próxima do que se teria com um banco de dados r
 
     (*) Esse serviço foi implementado apenas para esse exercício. Em um cenário real, essa função que retorna todos não existiria e no lugar ela esperaria a quantidade ou página a ser retornada, já que facilmente os registros são na casa dos milhares ou milhões em bancos reais e retornar todos não seria nada performático e prático.
 
-# Estrutura do objeto json
+# Estrutura do Objeto JSON
     Lancamento {
         id: number;
         data: string;
