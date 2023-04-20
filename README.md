@@ -6,13 +6,16 @@ Um comerciante precisa controlar o seu fluxo de caixa diário com os lançamento
 - Serviço do consolidado diário.
 
 # Desenho da Solução
+
+Primeiramente, a requisição chega no arquivo app.ts, onde é encaminhada por meio de um router para o controller responsável por seu processamento. Esse controller pode precisar de dados para executar sua função, e esses dados são obtidos por meio de um repository da entidade correspondente, que é o módulo responsável pelo acesso aos dados especificados pelo model. A figura abaixo ilustra esse fluxo de processamento.
 <img src="doc/arquitetura.png">
 
 # Implementação da Solução
 
 Implementei uma solução simples utilizando Node.js com Express e TypeScript para criar uma WebAPI.
-Optei por não utilizar aqui nenhum banco de dados em específico. Estou usando a memória do processo Node.js como armazenamento temporário, focando mais nos aspectos web da API mesmo.
 Além da WebAPI também implementei um exemplo da sua utilização através de uma aplicação frontend em HTML/Javascript.
+Optei por não utilizar aqui nenhum banco de dados em específico. Estou usando a memória do processo Node.js como armazenamento temporário, focando mais nos aspectos web da API mesmo.
+Para tornar a experiência mais próxima do que se teria com um banco de dados real, que é sempre assíncrono(async), utilizei promessas(promises), embora isso seja completamente desnecessário neste cenário simplificado. No entanto, isso será benéfico posteriormente, quando o banco de dados for conectado. Portanto, todas as funções retornarão uma promessa(Promise).
 
 # Dependências
 - Express: webserver que vamos utilizar para a webapi;
@@ -27,14 +30,14 @@ Além da WebAPI também implementei um exemplo da sua utilização através de u
 # Serviços implementados
 - Os serviços da WebAPI está sendo executado no endereço http://localhost:3000/lancamento/v1/
 - Serviços disponíveis:
-    - “/all”, recupera todos os lançamentos (*)
-    - “/consolidated:”, recupera todos os consolidados diários (*)
-    - “/consolidated/:data”, recupera o consolidado diário de uma data especifica
-    - “/get/:id”, recupera um lançamento passando o parâmetro do seu “id”
-    - “/save”, inclui ou altera um determinado lançamento, recebe um objeto, se for passado o “id” neste objeto será realizado a alteração caso contrário será incluído;
-    - “/delete/:id”, exclui o lançamento passando o parâmetro do seu “id”
+    - “/all”, verbo HTTP GET, recupera todos os lançamentos no formato JSON. (*)
+    - “/consolidated:”, verbo HTTP GET, recupera todos os consolidados diários no formato JSON. (*)
+    - “/consolidated/:data”, verbo HTTP GET, recupera o consolidado diário de uma data especifica no formato JSON.
+    - “/get/:id”, verbo HTTP GET, recupera um lançamento passando o parâmetro do seu “id” no formato JSON.
+    - “/save”, verbo HTTP POST, inclui ou altera um determinado lançamento, recebe um objeto, se for passado o “id” neste objeto será realizado a alteração caso contrário será incluído.
+    - “/delete/:id”, verbo HTTP DELETE, exclui o lançamento passando o parâmetro do seu “id”.
 
-    (*) Esse serviço foi implementado apenas para esse exercício, em produção o ideal implementar paginação.
+    (*) Esse serviço foi implementado apenas para esse exercício. Em um cenário real, essa função que retorna todos não existiria e no lugar ela esperaria a quantidade ou página a ser retornada, já que facilmente os registros são na casa dos milhares ou milhões em bancos reais e retornar todos não seria nada performático e prático.
 
 # Estrutura do objeto json
     Lancamento {
