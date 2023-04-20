@@ -2,7 +2,7 @@
 
 function getLancamentos() {
     return $.ajax({
-        url: 'http://localhost:3000/lancamento/v1',
+        url: 'http://localhost:3000/lancamento/v1/all',
         type: 'GET',
         dataType: 'json',
         success: function (lancamentos) {
@@ -19,7 +19,7 @@ function getLancamentos() {
 
 function salvarLancamento(lancamento) {
     $.ajax({
-        url: 'http://localhost:3000/lancamento/v1',
+        url: 'http://localhost:3000/lancamento/v1/save/',
         type: 'POST',
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(lancamento),        
@@ -35,7 +35,7 @@ function salvarLancamento(lancamento) {
 function excluirLancamento(id) {
     if (confirm("Confirme a exclusão do lançamento?")){
         $.ajax({
-            url: 'http://localhost:3000/lancamento/v1/' + id,
+            url: 'http://localhost:3000/lancamento/v1/delete/' + id,
             type: 'DELETE',
             success: function (lancamento) {
                 getAllLancamentos();

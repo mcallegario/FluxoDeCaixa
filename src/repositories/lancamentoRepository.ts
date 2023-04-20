@@ -36,21 +36,23 @@ let lancamentos: Lancamento[] = [
         valor: 150.00
     }
 ];
-
+function sortEntrys() {
+    //ordena os lançamentos por data crescente
+    lancamentos.sort(function(a, b) {
+        var keyA = new Date(a.data),
+            keyB = new Date(b.data);
+        // Compare as 2 datas
+        if (keyA < keyB) return -1;
+        if (keyA > keyB) return 1;
+        return 0;
+    });
+}
 async function addEntry(lancamento: Lancamento): Promise<Lancamento | undefined> {
     return new Promise((resolve, reject) => {
         const newLancamento = new Lancamento(lancamento.data, lancamento.descricao,lancamento.tipo,lancamento.valor*1);
         lancamentos.push(newLancamento);
 
-        //ordena os lançamentos por data crescente
-        lancamentos.sort(function(a, b) {
-            var keyA = new Date(a.data),
-                keyB = new Date(b.data);
-            // Compare as 2 datas
-            if (keyA < keyB) return -1;
-            if (keyA > keyB) return 1;
-            return 0;
-        });
+        sortEntrys();
 
         return resolve(lancamento);
     })
@@ -58,12 +60,16 @@ async function addEntry(lancamento: Lancamento): Promise<Lancamento | undefined>
     
 async function updateEntry(lancamento: Lancamento): Promise<Lancamento | undefined> {
     return new Promise((resolve, reject) => {
-        const idx = lancamentos.findIndex((l) => l.id !== lancamento.id);
+        const idx = lancamentos.findIndex((l) => l.id === lancamento.id);
         if (idx>=0){
-            lancamentos[idx].data = lancamento.data;
             lancamentos[idx].descricao = lancamento.descricao;
             lancamentos[idx].tipo = lancamento.tipo;
             lancamentos[idx].valor = lancamento.valor;
+            if (lancamentos[idx].data !== lancamento.data){
+                lancamentos[idx].data = lancamento.data;
+                sortEntrys();
+            }
+
         }
         return resolve(undefined);
     })

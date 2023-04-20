@@ -60,12 +60,12 @@ function inserirLancamento(){
     const lancamento = {
         data: new Date(data[0],data[1]-1,data[2]),
         descricao: $("#descricao").val(),
-        tipo: $("#tipo").val(),
+        tipo: $("#tipo").val()*1,
         valor: $("#valor").val().replaceAll('.','').replace(',','.')*1
     }
     
     if ($("#id").val()){
-        lancamento.id = $("#id").val();
+        lancamento.id = $("#id").val()*1;
         limparFormulario();
     }
 

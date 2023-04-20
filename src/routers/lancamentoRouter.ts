@@ -3,14 +3,14 @@ import LancamentoController  from '../controllers/lancamentoController';
 
 const router = express.Router();
 
-router.get('/', LancamentoController.getAllEntrys);
+router.get('/all', LancamentoController.getAllEntrys);
 router.get('/consolidated', LancamentoController.getAllConsolidatedDaily);
 router.get('/consolidated/:data', LancamentoController.getConsolidatedDaily);
-router.get('/:id', LancamentoController.getEntry);
+router.get('/get/:id', LancamentoController.getEntry);
 
-router.post('/', LancamentoController.addUpdateEntry);
+router.post('/save', LancamentoController.addUpdateEntry);
 
-router.delete('/:id', LancamentoController.deleteEntry);
+router.delete('/delete/:id', LancamentoController.deleteEntry);
 
 
 export default router;
