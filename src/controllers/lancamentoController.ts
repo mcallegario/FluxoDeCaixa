@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import Lancamento from '../models/lancamento';
-import Consolidado from '../models/consolidado';
 import LancamentoService from '../repositories/lancamentoRepository';
 
 async function addUpdateEntry(req: Request, res: Response) {
     const lancamento = req.body as Lancamento;
+    // se o objeto recebido contém um id será realizado alteração caso contrário será inclusão
     if (lancamento.id){
         await LancamentoService.updateEntry(lancamento);
     }else{

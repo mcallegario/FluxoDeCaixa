@@ -54,6 +54,8 @@ async function addEntry(lancamento: Lancamento): Promise<Lancamento | undefined>
 
         sortEntrys();
 
+        //Neste ponto seria implementado a rotina para incluir o registro no Banco de dados
+
         return resolve(lancamento);
     })
 }
@@ -71,6 +73,7 @@ async function updateEntry(lancamento: Lancamento): Promise<Lancamento | undefin
             }
 
         }
+        //Neste ponto seria implementado a rotina para alterar o registro no Banco de dados
         return resolve(undefined);
     })
 }
@@ -78,6 +81,7 @@ async function updateEntry(lancamento: Lancamento): Promise<Lancamento | undefin
 async function deleteEntry(id: number): Promise<Lancamento[] | undefined> {
     return new Promise((resolve, reject) => {
         lancamentos = lancamentos.filter((l) => l.id !== id);
+        //Neste ponto seria implementado a rotina para excluir o registro no Banco de dados
         return resolve(lancamentos);
     })
 }
@@ -85,6 +89,7 @@ async function deleteEntry(id: number): Promise<Lancamento[] | undefined> {
 //consulta os lançamentos por data
 async function getAllConsolidatedDaily(): Promise<Consolidado[] | undefined> {
     return new Promise( async (resolve, reject) => {
+        //Neste ponto seria implementado a rotina para selecionar os registros no Banco de dados
         const consolidado = await getConsolidated(lancamentos);
         return resolve(consolidado);
     })
@@ -93,6 +98,7 @@ async function getAllConsolidatedDaily(): Promise<Consolidado[] | undefined> {
 //consulta os lançamentos por data
 async function getConsolidatedDaily(data:string): Promise<Consolidado[] | undefined> {
     return new Promise( async (resolve, reject) => {
+        //Neste ponto seria implementado a rotina para selecionar os registros no Banco de dados
         const lancamentosDia = lancamentos.filter(c=>c.data === data);
         const consolidado = await getConsolidated(lancamentosDia);
         return resolve(consolidado);
@@ -120,6 +126,8 @@ async function getConsolidated(lancamentos:Lancamento[]): Promise<Consolidado[] 
 //ler o lançamento de um id
 async function getEntry(id: number): Promise<Lancamento | undefined> {
     return new Promise((resolve, reject) => {
+        //Neste ponto seria implementado a rotina para selecionar o registro no Banco de dados
+
         return resolve(lancamentos.find(c => c.id === id));
     })
 }
@@ -127,6 +135,7 @@ async function getEntry(id: number): Promise<Lancamento | undefined> {
 //ler todos os lançamentos
 async function getAllEntrys(): Promise<Lancamento[]> {
     return new Promise((resolve, reject) => {
+        //Neste ponto seria implementado a rotina para selecionar os registros no Banco de dados
         return resolve(lancamentos);
     })
 }
